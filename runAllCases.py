@@ -28,7 +28,7 @@ def login():
 def write_yaml(value):
     # yamlPath yaml文件路径
     yamlPath = os.path.join(base_path, 'common', 'token.yaml')
-    print(yamlPath)
+    #print(yamlPath)
     # 需要写入的内容
     tk = {'token': value}
     # 写入到yaml文件
@@ -44,7 +44,7 @@ def new_file(test_dir):
     # 最后对lists元素，按文件修改时间大小从小到大排序
     lists.sort(key=lambda fn: os.path.getmtime(test_dir + '\\' + fn))
     file_path = os.path.join(test_dir, lists[-1])
-    print(file_path)
+    # print(file_path)
     return file_path
 
 
@@ -86,8 +86,8 @@ logging.basicConfig(level=logging.DEBUG,
 if __name__ == "__main__":
     token = login()  # 登录获取token
     write_yaml(token)  # 写入yaml文件
-    test_dir = 'D:\\puwei\\InterfaceTest\\testCase\\'
-    test_report = 'D:\\puwei\\projectsTest\\reports\\'
+    test_dir = 'D:\\puwei\\InterfaceTest\\testCases\\'
+    test_report = 'D:\\puwei\\InterfaceTest\\testReports\\'
     discover = unittest.defaultTestLoader.discover(test_dir, pattern='test*.py')
     now = time.strftime('%Y-%m-%d-%H-%M-%S', time.localtime(time.time()))
     fileName = test_report + now + 'result.html'

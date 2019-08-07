@@ -26,6 +26,7 @@ testData3 = [{'type': '1', 'pageNo': 'b', 'pageSize': 6, 'assert': '请求参数
 #
 @ddt.ddt
 class ProjectList(unittest.TestCase):
+    """项目列表"""
     def setUp(self):
         self.headers = {"x-auth-token": get_token()}
         self.url = "https://api.ezbtest.top/ieo/project/list"

@@ -3,6 +3,7 @@ import requests
 
 
 class Assets(unittest.TestCase):
+    """交易所币种资料"""
     def setUp(self):
         self.url=' https://api.ezbtest.top/thirdparty/v1/assets'
     def tearDown(self):

@@ -3,6 +3,7 @@ import requests
 
 
 class MarketPair(unittest.TestCase):
+    """交易所最近成交"""
     def setUp(self):
         self.url=' https://api.ezbtest.top/thirdparty/v1/trades/USDT_BTC'
     def tearDown(self):
