@@ -1,0 +1,834 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>自动化测试报告</title>
+    <meta name="generator" content="HTMLTestRunner 0.8.2"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    
+<style type="text/css" media="screen">
+body        { font-family: verdana, arial, helvetica, sans-serif; font-size: 80%; }
+table       { font-size: 100%; }
+pre         { }
+
+/* -- heading ---------------------------------------------------------------------- */
+h1 {
+	font-size: 16pt;
+	color: gray;
+}
+.heading {
+    margin-top: 0ex;
+    margin-bottom: 1ex;
+}
+
+.heading .attribute {
+    margin-top: 1ex;
+    margin-bottom: 0;
+}
+
+.heading .description {
+    margin-top: 4ex;
+    margin-bottom: 6ex;
+}
+
+/* -- css div popup ------------------------------------------------------------------------ */
+a.popup_link {
+}
+
+a.popup_link:hover {
+    color: red;
+}
+
+.popup_window {
+    display: none;
+    position: relative;
+    left: 0px;
+    top: 0px;
+    /*border: solid #627173 1px; */
+    padding: 10px;
+    background-color: #E6E6D6;
+    font-family: "Lucida Console", "Courier New", Courier, monospace;
+    text-align: left;
+    font-size: 8pt;
+    width: 500px;
+}
+
+}
+/* -- report ------------------------------------------------------------------------ */
+#show_detail_line {
+    margin-top: 3ex;
+    margin-bottom: 1ex;
+}
+#result_table {
+    width: 80%;
+    border-collapse: collapse;
+    border: 1px solid #777;
+}
+#header_row {
+    font-weight: bold;
+    color: white;
+    background-color: #777;
+}
+#result_table td {
+    border: 1px solid #777;
+    padding: 2px;
+}
+#total_row  { font-weight: bold; }
+.passClass  { background-color: #6c6; }
+.failClass  { background-color: #c60; }
+.errorClass { background-color: #c00; }
+.passCase   { color: #6c6; }
+.failCase   { color: #c60; font-weight: bold; }
+.errorCase  { color: #c00; font-weight: bold; }
+.hiddenRow  { display: none; }
+.testcase   { margin-left: 2em; }
+
+
+/* -- ending ---------------------------------------------------------------------- */
+#ending {
+}
+
+</style>
+
+</head>
+<body>
+<script language="javascript" type="text/javascript"><!--
+output_list = Array();
+
+/* level - 0:Summary; 1:Failed; 2:All */
+function showCase(level) {
+    trs = document.getElementsByTagName("tr");
+    for (var i = 0; i < trs.length; i++) {
+        tr = trs[i];
+        id = tr.id;
+        if (id.substr(0,2) == 'ft') {
+            if (level < 1) {
+                tr.className = 'hiddenRow';
+            }
+            else {
+                tr.className = '';
+            }
+        }
+        if (id.substr(0,2) == 'pt') {
+            if (level > 1) {
+                tr.className = '';
+            }
+            else {
+                tr.className = 'hiddenRow';
+            }
+        }
+    }
+}
+
+
+function showClassDetail(cid, count) {
+    var id_list = Array(count);
+    var toHide = 1;
+    for (var i = 0; i < count; i++) {
+        tid0 = 't' + cid.substr(1) + '.' + (i+1);
+        tid = 'f' + tid0;
+        tr = document.getElementById(tid);
+        if (!tr) {
+            tid = 'p' + tid0;
+            tr = document.getElementById(tid);
+        }
+        id_list[i] = tid;
+        if (tr.className) {
+            toHide = 0;
+        }
+    }
+    for (var i = 0; i < count; i++) {
+        tid = id_list[i];
+        if (toHide) {
+            document.getElementById('div_'+tid).style.display = 'none'
+            document.getElementById(tid).className = 'hiddenRow';
+        }
+        else {
+            document.getElementById(tid).className = '';
+        }
+    }
+}
+
+
+function showTestDetail(div_id){
+    var details_div = document.getElementById(div_id)
+    var displayState = details_div.style.display
+    // alert(displayState)
+    if (displayState != 'block' ) {
+        displayState = 'block'
+        details_div.style.display = 'block'
+    }
+    else {
+        details_div.style.display = 'none'
+    }
+}
+
+
+function html_escape(s) {
+    s = s.replace(/&/g,'&amp;');
+    s = s.replace(/</g,'&lt;');
+    s = s.replace(/>/g,'&gt;');
+    return s;
+}
+
+/* obsoleted by detail in <div>
+function showOutput(id, name) {
+    var w = window.open("", //url
+                    name,
+                    "resizable,scrollbars,status,width=800,height=450");
+    d = w.document;
+    d.write("<pre>");
+    d.write(html_escape(output_list[id]));
+    d.write("\n");
+    d.write("<a href='javascript:window.close()'>close</a>\n");
+    d.write("</pre>\n");
+    d.close();
+}
+*/
+--></script>
+
+<div class='heading'>
+<h1>自动化测试报告</h1>
+<p class='attribute'><strong>Start Time:</strong> 2019-08-06 14:24:26</p>
+<p class='attribute'><strong>Duration:</strong> 0:00:03.801831</p>
+<p class='attribute'><strong>Status:</strong> Pass 15 Failure 5</p>
+
+<p class='description'>用例执行情况：</p>
+</div>
+
+
+
+<p id='show_detail_line'>Show
+<a href='javascript:showCase(0)'>Summary</a>
+<a href='javascript:showCase(1)'>Failed</a>
+<a href='javascript:showCase(2)'>All</a>
+</p>
+<table id='result_table'>
+<colgroup>
+<col align='left' />
+<col align='right' />
+<col align='right' />
+<col align='right' />
+<col align='right' />
+<col align='right' />
+</colgroup>
+<tr id='header_row'>
+    <td>Test Group/Test case</td>
+    <td>Count</td>
+    <td>Pass</td>
+    <td>Fail</td>
+    <td>Error</td>
+    <td>View</td>
+</tr>
+
+<tr class='failClass'>
+    <td>IeoCases.test_projectList.ProjectList</td>
+    <td>18</td>
+    <td>13</td>
+    <td>5</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c1',18)">Detail</a></td>
+</tr>
+
+<tr id='pt1.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_project1_1: 请求参数符合接口规范，返回success</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.1')" >
+        pass</a>
+
+    <div id='div_pt1.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.1: D:\puwei\InterfaceTest\common\readToken.py:11: YAMLLoadWarning: calling yaml.load() without Loader=... is deprecated, as the default Loader is unsafe. Please read https://msg.pyyaml.org/load for full details.
+  a=yaml.load(f)
+6bbc9cd6-f87b-4e51-b362-83c03827c052
+{'code': 0, 'data': {'content': [{'accumulateCeiling': '100000', 'activityRule': '&lt;p&gt;活动规则活动规则活动规则活动规则活动规则活动规则&lt;/p&gt;', 'applyAmount': '0', 'coin': 'USDT', 'coinUnit': 'USDX', 'createdAt': '2019-08-05 09:43:05', 'id': 89, 'imgUrl': 'https://img.ezbtest.top/2019/08/05/a3e9282a-e983-4c85-a060-e4a8e39dc636.png', 'introduce': '&lt;p&gt;项目介绍项目介绍项目介绍项目介绍项目介绍项目介绍&lt;/p&gt;', 'issuanceRealTotal': '0', 'issuanceTotal': '10000', 'language': 0, 'memberTotal': 0, 'name': 'ZDMT', 'numUsdt': '1000', 'price': '10', 'status': 0, 'threshold': '100', 'timeEnd': '2019-09-30 00:00:00', 'timeStart': '2019-08-31 00:00:00', 'updatedAt': '2019-08-05 09:47:26'}, {'accumulateCeiling': '10000000', 'activityRule': '&lt;p&gt;活动规则活动规则活动规则活动规则活动规则活动规则&lt;/p&gt;', 'applyAmount': '0', 'coin': 'USDT', 'coinUnit': 'PVS', 'createdAt': '2019-08-06 14:13:45', 'id': 93, 'imgUrl': 'https://img.ezbtest.top/2019/08/06/7d9ac65a-51cb-4023-a190-02d0d0315c4c.png', 'introduce': '&lt;p&gt;项目介绍项目介绍项目介绍项目介绍&lt;/p&gt;', 'issuanceRealTotal': '0', 'issuanceTotal': '1000000', 'language': 0, 'memberTotal': 0, 'name': '测试实名认证', 'numUsdt': '100', 'price': '10', 'status': 1, 'threshold': '100', 'timeEnd': '2019-09-30 14:00:00', 'timeStart': '2019-08-06 14:16:00', 'updatedAt': '2019-08-06 14:16:05'}, {'accumulateCeiling': '999999999', 'activityRule': '&lt;p&gt;活动规则活动规则活动规则活动规则活动规则活动规则活动规则&lt;/p&gt;', 'applyAmount': '0', 'coin': 'USDT', 'coinUnit': 'ECNY', 'createdAt': '2019-07-30 17:22:28', 'id': 76, 'imgUrl': 'https://img.ezbtest.top/2019/07/30/60e7cfc5-5348-4024-81b2-09388b401c31.png', 'introduce': '&lt;p&gt;项目介绍项目介绍项目介绍项目介绍项目介绍项目介绍&lt;/p&gt;', 'issuanceRealTotal': '0', 'issuanceTotal': '999999999', 'language': 0, 'memberTotal': 0, 'name': '测试持有量', 'numUsdt': '10000000', 'price': '100', 'status': 1, 'threshold': '999999999', 'timeEnd': '2019-08-10 17:00:00', 'timeStart': '2019-07-30 17:39:00', 'updatedAt': '2019-07-30 17:37:43'}, {'accumulateCeiling': '1000', 'activityRule': '&lt;p&gt;活动规则活动规则活动规则活动规则活动规则&lt;/p&gt;', 'applyAmount': '10', 'coin': 'USDT', 'coinUnit': 'EOS', 'createdAt': '2019-08-06 13:54:32', 'id': 92, 'imgUrl': 'https://img.ezbtest.top/2019/08/06/c5950a67-275e-4eca-ad4e-5b9b206b8ca2.png', 'introduce': '&lt;p&gt;项目介绍项目介绍项目介绍项目介绍&lt;/p&gt;', 'issuanceRealTotal': '10', 'issuanceTotal': '1000', 'language': 0, 'memberTotal': 1, 'name': 'ieo申购', 'numUsdt': '100', 'price': '1', 'status': 2, 'threshold': '1', 'timeEnd': '2019-08-06 14:10:00', 'timeStart': '2019-08-06 13:57:00', 'updatedAt': '2019-08-06 13:55:56'}, {'accumulateCeiling': '1000', 'activityRule': '&lt;p&gt;HHHHHHHHHHHHHHHHHHHHHHHHHH&lt;/p&gt;&lt;p&gt;HHHHHHHHHHHHHHH&lt;/p&gt;&lt;p&gt;HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH&lt;/p&gt;&lt;p&gt;HHHHHHHHH&lt;/p&gt;&lt;p&gt;HHHHHHHHHHHHHH&lt;/p&gt;&lt;p&gt;HHHHHHHHHHHHHHHHHHH&lt;/p&gt;&lt;p&gt;HHHHHH&lt;/p&gt;&lt;p&gt;HHHHHHHHHHHH&lt;/p&gt;&lt;p&gt;HHHHHHHHHHHHHHHHHHHHHHH&lt;/p&gt;&lt;p&gt;HHHHHHHHH&lt;/p&gt;', 'applyAmount': '1333.33333333', 'coin': 'USDT', 'coinUnit': 'SPM', 'createdAt': '2019-08-06 11:41:29', 'id': 91, 'imgUrl': 'https://img.ezbtest.top/2019/08/06/49c2005e-5631-4430-9a4a-297b923b8f88.png', 'introduce': '&lt;p&gt;GGGGGGG&lt;/p&gt;&lt;p&gt;GGGG&lt;/p&gt;&lt;p&gt;GGGGGGGGGGGG&lt;/p&gt;&lt;p&gt;GGGGGGGGGGG&lt;/p&gt;&lt;p&gt;GGGGGGGGGGGGGG&lt;/p&gt;&lt;p&gt;GGGGGGGGGGGGGGGGGGG&lt;/p&gt;&lt;p&gt;GGGGGGGGG&lt;/p&gt;&lt;p&gt;GGGGGGGGGG&lt;/p&gt;&lt;p&gt;GGG&lt;/p&gt;&lt;p&gt;GGGGGGGG&lt;/p&gt;&lt;p&gt;GGGGGGGGGG&lt;/p&gt;&lt;p&gt;GGGGG&lt;/p&gt;&lt;p&gt;GGGGGGGG&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;', 'issuanceRealTotal': '500', 'issuanceTotal': '500', 'language': 0, 'memberTotal': 1, 'name': 'GGGG', 'numUsdt': '1', 'price': '0.3', 'status': 2, 'threshold': '100', 'timeEnd': '2019-08-06 11:47:00', 'timeStart': '2019-08-06 11:45:00', 'updatedAt': '2019-08-06 11:43:12'}, {'accumulateCeiling': '1000', 'activityRule': '&lt;p&gt;111111111111111111111111111111111111111111111111&lt;/p&gt;', 'applyAmount': '193.3563', 'coin': 'USDT', 'coinUnit': 'BAR', 'createdAt': '2019-08-05 18:30:44', 'id': 90, 'imgUrl': 'https://img.ezbtest.top/2019/08/05/e2d1decd-c38c-4db3-88f6-9661b0db920a.jpg', 'introduce': '&lt;p&gt;1111111111111111111111111&lt;/p&gt;', 'issuanceRealTotal': '0', 'issuanceTotal': '1000000', 'language': 0, 'memberTotal': 1, 'name': '1111111111111111111111111111', 'numUsdt': '1', 'price': '1', 'status': 2, 'threshold': '10', 'timeEnd': '2019-08-06 00:00:04', 'timeStart': '2019-08-05 00:00:00', 'updatedAt': '2019-08-05 18:32:07'}, {'accumulateCeiling': '1000', 'activityRule': '&lt;p&gt;活动规则活动规则活动规则活动规则活动规则&lt;/p&gt;', 'applyAmount': '110', 'coin': 'USDT', 'coinUnit': 'ONT', 'createdAt': '2019-08-01 10:24:09', 'id': 83, 'imgUrl': 'https://img.ezbtest.top/2019/08/01/f361ccda-ae67-4933-9940-648651bf0da5.png', 'introduce': '&lt;p&gt;项目介绍项目介绍项目介绍项目介绍&lt;/p&gt;', 'issuanceRealTotal': '110', 'issuanceTotal': '1000', 'language': 0, 'memberTotal': 1, 'name': '测试进行中禁用启用', 'numUsdt': '1000', 'price': '1', 'status': 2, 'threshold': '1', 'timeEnd': '2019-08-01 10:25:00', 'timeStart': '2019-08-01 10:18:00', 'updatedAt': '2019-08-01 10:24:20'}, {'accumulateCeiling': '100000', 'activityRule': '&lt;p&gt;活动规则活动规则活动规则活动规则&lt;/p&gt;', 'applyAmount': '99999.9999', 'coin': 'USDT', 'coinUnit': 'ZEC', 'createdAt': '2019-07-31 10:17:58', 'id': 81, 'imgUrl': 'https://img.ezbtest.top/2019/07/31/49a39969-f5a1-4450-ae57-3affe5187dc5.png', 'introduce': '&lt;p&gt;项目介绍项目介绍项目介绍项目介绍&lt;/p&gt;', 'issuanceRealTotal': '99999.9999', 'issuanceTotal': '100000', 'language': 0, 'memberTotal': 1, 'name': '测试申购参数边界值', 'numUsdt': '1000', 'price': '1', 'status': 2, 'threshold': '10', 'timeEnd': '2019-07-31 10:24:00', 'timeStart': '2019-07-31 10:22:00', 'updatedAt': '2019-07-31 10:21:54'}, {'accumulateCeiling': '1000', 'activityRule': '&lt;p&gt;1&lt;/p&gt;', 'applyAmount': '1000', 'coin': 'USDT', 'coinUnit': 'BAR', 'createdAt': '2019-07-30 18:40:27', 'id': 80, 'imgUrl': 'https://img.ezbtest.top/2019/07/30/44337ae2-8f84-4e66-8d56-774e44787c98.png', 'introduce': '&lt;p&gt;1&lt;/p&gt;', 'issuanceRealTotal': '100', 'issuanceTotal': '100', 'language': 0, 'memberTotal': 1, 'name': 'app购买', 'numUsdt': '1', 'price': '1', 'status': 2, 'threshold': '1', 'timeEnd': '2019-07-30 18:45:00', 'timeStart': '2019-07-30 18:43:00', 'updatedAt': '2019-07-30 18:41:53'}, {'accumulateCeiling': '100', 'activityRule': '&lt;p&gt;活动规则活动规则活动规则活动规则活动规则&lt;/p&gt;', 'applyAmount': '100', 'coin': 'USDT', 'coinUnit': 'ONEF', 'createdAt': '2019-07-30 18:24:31', 'id': 79, 'imgUrl': 'https://img.ezbtest.top/2019/07/30/5da8a0ad-670e-4c48-82bb-8b581329130f.png', 'introduce': '&lt;p&gt;项目介绍项目介绍项目介绍项目介绍&lt;/p&gt;', 'issuanceRealTotal': '100', 'issuanceTotal': '100', 'language': 0, 'memberTotal': 1, 'name': '项目成功数', 'numUsdt': '1', 'price': '1', 'status': 2, 'threshold': '1', 'timeEnd': '2019-07-30 18:27:00', 'timeStart': '2019-07-30 18:26:00', 'updatedAt': '2019-07-30 18:25:38'}, {'accumulateCeiling': '100', 'activityRule': '&lt;p&gt;活动规则活动规则活动规则活动规则&lt;/p&gt;', 'applyAmount': '0', 'coin': 'USDT', 'coinUnit': 'ECNY', 'createdAt': '2019-07-30 18:19:51', 'id': 78, 'imgUrl': 'https://img.ezbtest.top/2019/07/30/5f4434ca-cbe6-4d91-b36a-40c18cfc8ee4.png', 'introduce': '&lt;p&gt;项目介绍项目介绍项目介绍项目介绍&lt;/p&gt;', 'issuanceRealTotal': '0', 'issuanceTotal': '100', 'language': 0, 'memberTotal': 0, 'name': '测试申购成功数', 'numUsdt': '100', 'price': '1', 'status': 2, 'threshold': '1', 'timeEnd': '2019-07-30 18:23:00', 'timeStart': '2019-07-30 18:21:00', 'updatedAt': '2019-07-30 18:21:06'}, {'accumulateCeiling': '100', 'activityRule': '&lt;p&gt;1&lt;/p&gt;', 'applyAmount': '100', 'coin': 'USDT', 'coinUnit': 'BAR', 'createdAt': '2019-07-30 18:17:00', 'id': 77, 'imgUrl': 'https://img.ezbtest.top/2019/07/30/52c7e3f1-e04d-450e-ad0b-a84078d7242a.png', 'introduce': '&lt;p&gt;1&lt;/p&gt;', 'issuanceRealTotal': '100', 'issuanceTotal': '100', 'language': 0, 'memberTotal': 1, 'name': 'app最终结算', 'numUsdt': '1', 'price': '1', 'status': 2, 'threshold': '1', 'timeEnd': '2019-07-30 18:25:00', 'timeStart': '2019-07-30 18:20:00', 'updatedAt': '2019-07-30 18:18:23'}], 'total': 55}, 'message': 'success'}
+test over
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.2' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_project1_2: 请求参数符合接口规范，返回success</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.2')" >
+        pass</a>
+
+    <div id='div_pt1.2' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.2').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.2: 6bbc9cd6-f87b-4e51-b362-83c03827c052
+{'code': 0, 'data': {'content': [{'accumulateCeiling': '100000', 'activityRule': '&lt;p&gt;活动规则活动规则活动规则活动规则活动规则活动规则&lt;/p&gt;', 'applyAmount': '0', 'coin': 'USDT', 'coinUnit': 'USDX', 'createdAt': '2019-08-05 09:43:05', 'id': 89, 'imgUrl': 'https://img.ezbtest.top/2019/08/05/a3e9282a-e983-4c85-a060-e4a8e39dc636.png', 'introduce': '&lt;p&gt;项目介绍项目介绍项目介绍项目介绍项目介绍项目介绍&lt;/p&gt;', 'issuanceRealTotal': '0', 'issuanceTotal': '10000', 'language': 0, 'memberTotal': 0, 'name': 'ZDMT', 'numUsdt': '1000', 'price': '10', 'status': 0, 'threshold': '100', 'timeEnd': '2019-09-30 00:00:00', 'timeStart': '2019-08-31 00:00:00', 'updatedAt': '2019-08-05 09:47:26'}], 'total': 1}, 'message': 'success'}
+test over
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.3' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_project1_3: 请求参数符合接口规范，返回success</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.3')" >
+        pass</a>
+
+    <div id='div_pt1.3' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.3').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.3: 6bbc9cd6-f87b-4e51-b362-83c03827c052
+{'code': 0, 'data': {'content': [], 'total': 0}, 'message': 'success'}
+test over
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.4' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_project1_4: 请求参数符合接口规范，返回success</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.4')" >
+        pass</a>
+
+    <div id='div_pt1.4' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.4').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.4: 6bbc9cd6-f87b-4e51-b362-83c03827c052
+{'code': 0, 'data': {'content': [{'accumulateCeiling': '500', 'activityRule': '&lt;p&gt;活动规则&lt;/p&gt;', 'applyAmount': '61', 'coin': 'USDT', 'coinUnit': 'ETC', 'createdAt': '2019-07-29 17:55:14', 'id': 67, 'imgUrl': 'https://img.ezbtest.top/2019/07/29/fedcdc20-c523-4409-aac0-b4336a6e6c0e.png', 'introduce': '&lt;p&gt;项目介绍&lt;/p&gt;', 'issuanceRealTotal': '61', 'issuanceTotal': '1000', 'language': 0, 'memberTotal': 2, 'name': '测试4455', 'numUsdt': '1000', 'price': '1', 'status': 2, 'threshold': '1', 'timeEnd': '2019-07-31 09:00:00', 'timeStart': '2019-07-29 21:00:00', 'updatedAt': '2019-07-29 17:59:23'}, {'accumulateCeiling': '5000', 'activityRule': '&lt;p&gt;活动规则&lt;/p&gt;', 'applyAmount': '100', 'coin': 'USDT', 'coinUnit': 'BAR', 'createdAt': '2019-07-29 17:04:25', 'id': 66, 'imgUrl': 'https://img.ezbtest.top/2019/07/29/fedcdc20-c523-4409-aac0-b4336a6e6c0e.png', 'introduce': '&lt;p&gt;项目介绍&lt;/p&gt;', 'issuanceRealTotal': '100', 'issuanceTotal': '10000', 'language': 0, 'memberTotal': 1, 'name': '测试3344', 'numUsdt': '100', 'price': '1', 'status': 2, 'threshold': '10', 'timeEnd': '2019-07-31 08:00:00', 'timeStart': '2019-07-29 18:00:00', 'updatedAt': '2019-07-29 17:06:19'}, {'accumulateCeiling': '2000', 'activityRule': '&lt;p&gt;活动规则活动规则&lt;/p&gt;', 'applyAmount': '100', 'coin': 'USDT', 'coinUnit': 'COC', 'createdAt': '2019-07-29 15:58:28', 'id': 59, 'imgUrl': 'https://img.ezbtest.top/2019/07/29/ed3a8fe5-735d-49d1-8ee0-2f4f5d3d1a23.png', 'introduce': '&lt;p&gt;项目介绍项目介绍&lt;/p&gt;', 'issuanceRealTotal': '100', 'issuanceTotal': '10000', 'language': 0, 'memberTotal': 1, 'name': '测试0000', 'numUsdt': '10000', 'price': '1', 'status': 2, 'threshold': '10', 'timeEnd': '2019-07-31 08:00:00', 'timeStart': '2019-07-29 17:00:00', 'updatedAt': '2019-07-29 16:09:51'}], 'total': 52}, 'message': 'success'}
+test over
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.5' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_project2_1: type参数为3或a或特殊字符，返回项目数量页数为0</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.5')" >
+        pass</a>
+
+    <div id='div_pt1.5' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.5').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.5: 6bbc9cd6-f87b-4e51-b362-83c03827c052
+{'code': 0, 'data': {'content': [], 'total': 0}, 'message': 'success'}
+test over
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft1.6' class='none'>
+    <td class='failCase'><div class='testcase'>test_project2_2: type参数为3或a或特殊字符，返回项目数量页数为0</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.6')" >
+        fail</a>
+
+    <div id='div_ft1.6' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.6').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.6: 6bbc9cd6-f87b-4e51-b362-83c03827c052
+{'code': 0, 'data': {'content': [{'accumulateCeiling': '100000', 'activityRule': '&lt;p&gt;活动规则活动规则活动规则活动规则活动规则活动规则&lt;/p&gt;', 'applyAmount': '0', 'coin': 'USDT', 'coinUnit': 'USDX', 'createdAt': '2019-08-05 09:43:05', 'id': 89, 'imgUrl': 'https://img.ezbtest.top/2019/08/05/a3e9282a-e983-4c85-a060-e4a8e39dc636.png', 'introduce': '&lt;p&gt;项目介绍项目介绍项目介绍项目介绍项目介绍项目介绍&lt;/p&gt;', 'issuanceRealTotal': '0', 'issuanceTotal': '10000', 'language': 0, 'memberTotal': 0, 'name': 'ZDMT', 'numUsdt': '1000', 'price': '10', 'status': 0, 'threshold': '100', 'timeEnd': '2019-09-30 00:00:00', 'timeStart': '2019-08-31 00:00:00', 'updatedAt': '2019-08-05 09:47:26'}], 'total': 1}, 'message': 'success'}
+test over
+Traceback (most recent call last):
+  File "D:\py3\lib\site-packages\ddt.py", line 145, in wrapper
+    return func(self, *args, **kwargs)
+  File "D:\puwei\InterfaceTest\testCases\IeoCases\test_projectList.py", line 48, in test_project2
+    self.assertEqual(value['assert'], rs1['data']['total'])
+AssertionError: 0 != 1
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft1.7' class='none'>
+    <td class='failCase'><div class='testcase'>test_project2_3: type参数为3或a或特殊字符，返回项目数量页数为0</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.7')" >
+        fail</a>
+
+    <div id='div_ft1.7' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.7').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.7: 6bbc9cd6-f87b-4e51-b362-83c03827c052
+{'code': 0, 'data': {'content': [{'accumulateCeiling': '100000', 'activityRule': '&lt;p&gt;活动规则活动规则活动规则活动规则活动规则活动规则&lt;/p&gt;', 'applyAmount': '0', 'coin': 'USDT', 'coinUnit': 'USDX', 'createdAt': '2019-08-05 09:43:05', 'id': 89, 'imgUrl': 'https://img.ezbtest.top/2019/08/05/a3e9282a-e983-4c85-a060-e4a8e39dc636.png', 'introduce': '&lt;p&gt;项目介绍项目介绍项目介绍项目介绍项目介绍项目介绍&lt;/p&gt;', 'issuanceRealTotal': '0', 'issuanceTotal': '10000', 'language': 0, 'memberTotal': 0, 'name': 'ZDMT', 'numUsdt': '1000', 'price': '10', 'status': 0, 'threshold': '100', 'timeEnd': '2019-09-30 00:00:00', 'timeStart': '2019-08-31 00:00:00', 'updatedAt': '2019-08-05 09:47:26'}], 'total': 1}, 'message': 'success'}
+test over
+Traceback (most recent call last):
+  File "D:\py3\lib\site-packages\ddt.py", line 145, in wrapper
+    return func(self, *args, **kwargs)
+  File "D:\puwei\InterfaceTest\testCases\IeoCases\test_projectList.py", line 48, in test_project2
+    self.assertEqual(value['assert'], rs1['data']['total'])
+AssertionError: 0 != 1
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.8' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_project2_4: type参数为3或a或特殊字符，返回项目数量页数为0</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.8')" >
+        pass</a>
+
+    <div id='div_pt1.8' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.8').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.8: 6bbc9cd6-f87b-4e51-b362-83c03827c052
+{'code': 0, 'data': {'content': [], 'total': 0}, 'message': 'success'}
+test over
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.9' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_project2_5: type参数为3或a或特殊字符，返回项目数量页数为0</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.9')" >
+        pass</a>
+
+    <div id='div_pt1.9' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.9').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.9: 6bbc9cd6-f87b-4e51-b362-83c03827c052
+{'code': 0, 'data': {'content': [], 'total': 0}, 'message': 'success'}
+test over
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft1.10' class='none'>
+    <td class='failCase'><div class='testcase'>test_project2_6: type参数为3或a或特殊字符，返回项目数量页数为0</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.10')" >
+        fail</a>
+
+    <div id='div_ft1.10' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.10').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.10: 6bbc9cd6-f87b-4e51-b362-83c03827c052
+{'code': 0, 'data': {'content': [{'accumulateCeiling': '100000', 'activityRule': '&lt;p&gt;活动规则活动规则活动规则活动规则活动规则活动规则&lt;/p&gt;', 'applyAmount': '0', 'coin': 'USDT', 'coinUnit': 'USDX', 'createdAt': '2019-08-05 09:43:05', 'id': 89, 'imgUrl': 'https://img.ezbtest.top/2019/08/05/a3e9282a-e983-4c85-a060-e4a8e39dc636.png', 'introduce': '&lt;p&gt;项目介绍项目介绍项目介绍项目介绍项目介绍项目介绍&lt;/p&gt;', 'issuanceRealTotal': '0', 'issuanceTotal': '10000', 'language': 0, 'memberTotal': 0, 'name': 'ZDMT', 'numUsdt': '1000', 'price': '10', 'status': 0, 'threshold': '100', 'timeEnd': '2019-09-30 00:00:00', 'timeStart': '2019-08-31 00:00:00', 'updatedAt': '2019-08-05 09:47:26'}], 'total': 1}, 'message': 'success'}
+test over
+Traceback (most recent call last):
+  File "D:\py3\lib\site-packages\ddt.py", line 145, in wrapper
+    return func(self, *args, **kwargs)
+  File "D:\puwei\InterfaceTest\testCases\IeoCases\test_projectList.py", line 48, in test_project2
+    self.assertEqual(value['assert'], rs1['data']['total'])
+AssertionError: 0 != 1
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.11' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_project3_1: pageNo、pageSize参数为汉字、负数、特殊字符，提示请求参数错误</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.11')" >
+        pass</a>
+
+    <div id='div_pt1.11' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.11').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.11: 6bbc9cd6-f87b-4e51-b362-83c03827c052
+{'code': 400, 'message': '请求参数错误.'}
+test over
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.12' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_project3_2: pageNo、pageSize参数为汉字、负数、特殊字符，提示请求参数错误</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.12')" >
+        pass</a>
+
+    <div id='div_pt1.12' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.12').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.12: 6bbc9cd6-f87b-4e51-b362-83c03827c052
+{'code': 400, 'message': '请求参数错误.'}
+test over
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft1.13' class='none'>
+    <td class='failCase'><div class='testcase'>test_project3_3: pageNo、pageSize参数为汉字、负数、特殊字符，提示请求参数错误</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.13')" >
+        fail</a>
+
+    <div id='div_ft1.13' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.13').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.13: 6bbc9cd6-f87b-4e51-b362-83c03827c052
+{'code': 0, 'data': {'content': [], 'total': 0}, 'message': 'success'}
+test over
+Traceback (most recent call last):
+  File "D:\py3\lib\site-packages\ddt.py", line 145, in wrapper
+    return func(self, *args, **kwargs)
+  File "D:\puwei\InterfaceTest\testCases\IeoCases\test_projectList.py", line 55, in test_project3
+    self.assertIn(value['assert'], rs2['message'])
+AssertionError: '请求参数错误' not found in 'success'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.14' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_project3_4: pageNo、pageSize参数为汉字、负数、特殊字符，提示请求参数错误</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.14')" >
+        pass</a>
+
+    <div id='div_pt1.14' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.14').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.14: 6bbc9cd6-f87b-4e51-b362-83c03827c052
+{'code': 400, 'message': '请求参数错误.'}
+test over
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.15' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_project3_5: pageNo、pageSize参数为汉字、负数、特殊字符，提示请求参数错误</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.15')" >
+        pass</a>
+
+    <div id='div_pt1.15' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.15').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.15: 6bbc9cd6-f87b-4e51-b362-83c03827c052
+{'code': 400, 'message': '请求参数错误.'}
+test over
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft1.16' class='none'>
+    <td class='failCase'><div class='testcase'>test_project3_6: pageNo、pageSize参数为汉字、负数、特殊字符，提示请求参数错误</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.16')" >
+        fail</a>
+
+    <div id='div_ft1.16' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.16').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.16: 6bbc9cd6-f87b-4e51-b362-83c03827c052
+{'code': 0, 'data': {'content': [], 'total': 0}, 'message': 'success'}
+test over
+Traceback (most recent call last):
+  File "D:\py3\lib\site-packages\ddt.py", line 145, in wrapper
+    return func(self, *args, **kwargs)
+  File "D:\puwei\InterfaceTest\testCases\IeoCases\test_projectList.py", line 55, in test_project3
+    self.assertIn(value['assert'], rs2['message'])
+AssertionError: '请求参数错误' not found in 'success'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.17' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_project3_7: pageNo、pageSize参数为汉字、负数、特殊字符，提示请求参数错误</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.17')" >
+        pass</a>
+
+    <div id='div_pt1.17' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.17').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.17: 6bbc9cd6-f87b-4e51-b362-83c03827c052
+{'code': 400, 'message': '请求参数错误.'}
+test over
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.18' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_project3_8: pageNo、pageSize参数为汉字、负数、特殊字符，提示请求参数错误</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.18')" >
+        pass</a>
+
+    <div id='div_pt1.18' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.18').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.18: 6bbc9cd6-f87b-4e51-b362-83c03827c052
+{'code': 400, 'message': '请求参数错误.'}
+test over
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass'>
+    <td>summaryApi.test_assets.Assets</td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c2',1)">Detail</a></td>
+</tr>
+
+<tr id='pt2.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_assert</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt2.1')" >
+        pass</a>
+
+    <div id='div_pt2.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt2.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt2.1: {'code': 0, 'data': [{'canDeposit': True, 'canWithdraw': True, 'cryptoassetId': 666582, 'lastUpdateTimestamp': -62135596800, 'makerFee': '0.002', 'maxWithdrawal': '80000', 'minWithdrawal': '10', 'name': 'BAR', 'takerFee': '0.002', 'unit': 'BAR'}, {'canDeposit': False, 'canWithdraw': False, 'cryptoassetId': 67858368, 'lastUpdateTimestamp': -62135596800, 'makerFee': '0.002', 'maxWithdrawal': '1000000', 'minWithdrawal': '10', 'name': 'CUSD', 'takerFee': '0.002', 'unit': 'CUSD'}, {'canDeposit': False, 'canWithdraw': False, 'cryptoassetId': 69677889, 'lastUpdateTimestamp': -62135596800, 'makerFee': '0.002', 'maxWithdrawal': '20', 'minWithdrawal': '10', 'name': 'ECNY', 'takerFee': '0.002', 'unit': 'ECNY'}, {'canDeposit': True, 'canWithdraw': True, 'cryptoassetId': 79786970, 'lastUpdateTimestamp': -62135596800, 'makerFee': '0.002', 'maxWithdrawal': '20', 'minWithdrawal': '1', 'name': 'ONEF', 'takerFee': '0.002', 'unit': 'ONEF'}, {'canDeposit': True, 'canWithdraw': True, 'cryptoassetId': 8473846578, 'lastUpdateTimestamp': -62135596800, 'makerFee': '0.002', 'maxWithdrawal': '20', 'minWithdrawal': '10', 'name': 'TITAN', 'takerFee': '0.002', 'unit': 'TITAN'}, {'canDeposit': False, 'canWithdraw': False, 'cryptoassetId': 717867, 'lastUpdateTimestamp': -62135596800, 'makerFee': '0.002', 'maxWithdrawal': '500000', 'minWithdrawal': '100', 'name': 'GNC', 'takerFee': '0.002', 'unit': 'GNC'}, {'canDeposit': False, 'canWithdraw': False, 'cryptoassetId': 677967, 'lastUpdateTimestamp': -62135596800, 'makerFee': '0.002', 'maxWithdrawal': '10000000', 'minWithdrawal': '1000', 'name': 'COC', 'takerFee': '0.002', 'unit': 'COC'}, {'canDeposit': False, 'canWithdraw': False, 'cryptoassetId': 717765, 'lastUpdateTimestamp': -62135596800, 'makerFee': '0.002', 'maxWithdrawal': '100000', 'minWithdrawal': '100', 'name': 'GMA', 'takerFee': '0.002', 'unit': 'GMA'}, {'canDeposit': False, 'canWithdraw': False, 'cryptoassetId': 79827145797668, 'lastUpdateTimestamp': -62135596800, 'makerFee': '0.002', 'maxWithdrawal': '1000000', 'minWithdrawal': '100', 'name': 'ORG-OLD', 'takerFee': '0.002', 'unit': 'ORG-OLD'}, {'canDeposit': True, 'canWithdraw': True, 'cryptoassetId': 697983, 'lastUpdateTimestamp': -62135596800, 'makerFee': '0.002', 'maxWithdrawal': '500000', 'minWithdrawal': '1.5', 'name': 'EOS', 'takerFee': '0.002', 'unit': 'EOS'}, {'canDeposit': True, 'canWithdraw': True, 'cryptoassetId': 808683, 'lastUpdateTimestamp': -62135596800, 'makerFee': '0.002', 'maxWithdrawal': '600000', 'minWithdrawal': '200', 'name': 'PVS', 'takerFee': '0.002', 'unit': 'PVS'}, {'canDeposit': True, 'canWithdraw': True, 'cryptoassetId': 838077, 'lastUpdateTimestamp': -62135596800, 'makerFee': '0.002', 'maxWithdrawal': '1000000', 'minWithdrawal': '5', 'name': 'SPM', 'takerFee': '0.002', 'unit': 'SPM'}, {'canDeposit': True, 'canWithdraw': True, 'cryptoassetId': 668467, 'lastUpdateTimestamp': -62135596800, 'makerFee': '0.002', 'maxWithdrawal': '100000000', 'minWithdrawal': '0.01', 'name': 'Bitcoin', 'takerFee': '0.002', 'unit': 'BTC'}, {'canDeposit': True, 'canWithdraw': True, 'cryptoassetId': 798271, 'lastUpdateTimestamp': -62135596800, 'makerFee': '0.002', 'maxWithdrawal': '1000000', 'minWithdrawal': '100', 'name': 'ORG', 'takerFee': '0.002', 'unit': 'ORG'}, {'canDeposit': True, 'canWithdraw': True, 'cryptoassetId': 698472, 'lastUpdateTimestamp': -62135596800, 'makerFee': '0.002', 'maxWithdrawal': '120', 'minWithdrawal': '0.02', 'name': 'Ethereum', 'takerFee': '0.002', 'unit': 'ETH'}, {'canDeposit': True, 'canWithdraw': True, 'cryptoassetId': 768467, 'lastUpdateTimestamp': -62135596800, 'makerFee': '0.002', 'maxWithdrawal': '500', 'minWithdrawal': '0.1', 'name': 'LTC', 'takerFee': '0.002', 'unit': 'LTC'}, {'canDeposit': True, 'canWithdraw': True, 'cryptoassetId': 906967, 'lastUpdateTimestamp': -62135596800, 'makerFee': '0.002', 'maxWithdrawal': '5000000', 'minWithdrawal': '0.03', 'name': 'ZEC', 'takerFee': '0.002', 'unit': 'ZEC'}, {'canDeposit': True, 'canWithdraw': True, 'cryptoassetId': 797771, 'lastUpdateTimestamp': -62135596800, 'makerFee': '0.002', 'maxWithdrawal': '10000', 'minWithdrawal': '10', 'name': 'OMG', 'takerFee': '0.002', 'unit': 'OMG'}, {'canDeposit': True, 'canWithdraw': True, 'cryptoassetId': 698467, 'lastUpdateTimestamp': -62135596800, 'makerFee': '0.002', 'maxWithdrawal': '100000', 'minWithdrawal': '0.5', 'name': 'ETC', 'takerFee': '0.002', 'unit': 'ETC'}, {'canDeposit': True, 'canWithdraw': True, 'cryptoassetId': 786979, 'lastUpdateTimestamp': -62135596800, 'makerFee': '0.002', 'maxWithdrawal': '20000', 'minWithdrawal': '1', 'name': 'NEO', 'takerFee': '0.002', 'unit': 'NEO'}, {'canDeposit': True, 'canWithdraw': True, 'cryptoassetId': 797884, 'lastUpdateTimestamp': -62135596800, 'makerFee': '0.002', 'maxWithdrawal': '20000', 'minWithdrawal': '4', 'name': 'ONT', 'takerFee': '0.002', 'unit': 'ONT'}, {'canDeposit': True, 'canWithdraw': True, 'cryptoassetId': 888280, 'lastUpdateTimestamp': -62135596800, 'makerFee': '0.002', 'maxWithdrawal': '4000000', 'minWithdrawal': '20', 'name': 'XRP', 'takerFee': '0.002', 'unit': 'XRP'}, {'canDeposit': True, 'canWithdraw': True, 'cryptoassetId': 866879, 'lastUpdateTimestamp': -62135596800, 'makerFee': '0.002', 'maxWithdrawal': '1000000', 'minWithdrawal': '100', 'name': 'VDO', 'takerFee': '0.002', 'unit': 'VDO'}, {'canDeposit': True, 'canWithdraw': True, 'cryptoassetId': 777967, 'lastUpdateTimestamp': -62135596800, 'makerFee': '0.002', 'maxWithdrawal': '1000000', 'minWithdrawal': '300', 'name': 'MOC', 'takerFee': '0.002', 'unit': 'MOC'}, {'canDeposit': True, 'canWithdraw': True, 'cryptoassetId': 677667, 'lastUpdateTimestamp': -62135596800, 'makerFee': '0.002', 'maxWithdrawal': '200000', 'minWithdrawal': '100', 'name': 'CLC', 'takerFee': '0.002', 'unit': 'CLC'}, {'canDeposit': True, 'canWithdraw': True, 'cryptoassetId': 657383, 'lastUpdateTimestamp': -62135596800, 'makerFee': '0.002', 'maxWithdrawal': '200000', 'minWithdrawal': '100', 'name': 'AIS', 'takerFee': '0.002', 'unit': 'AIS'}, {'canDeposit': True, 'canWithdraw': True, 'cryptoassetId': 657688, 'lastUpdateTimestamp': -62135596800, 'makerFee': '0.002', 'maxWithdrawal': '500000', 'minWithdrawal': '1000', 'name': 'ALX', 'takerFee': '0.002', 'unit': 'ALX'}, {'canDeposit': True, 'canWithdraw': True, 'cryptoassetId': 658384, 'lastUpdateTimestamp': -62135596800, 'makerFee': '0.002', 'maxWithdrawal': '100000', 'minWithdrawal': '10', 'name': 'AST', 'takerFee': '0.002', 'unit': 'AST'}, {'canDeposit': True, 'canWithdraw': True, 'cryptoassetId': 678377, 'lastUpdateTimestamp': -62135596800, 'makerFee': '0.002', 'maxWithdrawal': '10000', 'minWithdrawal': '10', 'name': 'CSM', 'takerFee': '0.002', 'unit': 'CSM'}, {'canDeposit': True, 'canWithdraw': True, 'cryptoassetId': 698679, 'lastUpdateTimestamp': -62135596800, 'makerFee': '0.002', 'maxWithdrawal': '5000000', 'minWithdrawal': '10', 'name': 'EVO', 'takerFee': '0.002', 'unit': 'EVO'}, {'canDeposit': True, 'canWithdraw': True, 'cryptoassetId': 737084, 'lastUpdateTimestamp': -62135596800, 'makerFee': '0.002', 'maxWithdrawal': '10000000', 'minWithdrawal': '100', 'name': 'IFT', 'takerFee': '0.002', 'unit': 'IFT'}, {'canDeposit': True, 'canWithdraw': True, 'cryptoassetId': 768472, 'lastUpdateTimestamp': -62135596800, 'makerFee': '0.002', 'maxWithdrawal': '100000000', 'minWithdrawal': '30000', 'name': 'LTH', 'takerFee': '0.002', 'unit': 'LTH'}, {'canDeposit': True, 'canWithdraw': True, 'cryptoassetId': 836866, 'lastUpdateTimestamp': -62135596800, 'makerFee': '0.002', 'maxWithdrawal': '1000000', 'minWithdrawal': '600', 'name': 'SDB', 'takerFee': '0.002', 'unit': 'SDB'}, {'canDeposit': True, 'canWithdraw': True, 'cryptoassetId': 837178, 'lastUpdateTimestamp': -62135596800, 'makerFee': '0.002', 'maxWithdrawal': '1000000', 'minWithdrawal': '300', 'name': 'SGN', 'takerFee': '0.002', 'unit': 'SGN'}, {'canDeposit': True, 'canWithdraw': True, 'cryptoassetId': 848288, 'lastUpdateTimestamp': -62135596800, 'makerFee': '0.002', 'maxWithdrawal': '10000000', 'minWithdrawal': '100', 'name': 'TRX', 'takerFee': '0.002', 'unit': 'TRX'}, {'canDeposit': True, 'canWithdraw': True, 'cryptoassetId': 848477, 'lastUpdateTimestamp': -62135596800, 'makerFee': '0.002', 'maxWithdrawal': '10000000', 'minWithdrawal': '10', 'name': 'TTM', 'takerFee': '0.002', 'unit': 'TTM'}, {'canDeposit': True, 'canWithdraw': True, 'cryptoassetId': 907371, 'lastUpdateTimestamp': -62135596800, 'makerFee': '0.002', 'maxWithdrawal': '5000000', 'minWithdrawal': '1000', 'name': 'ZIG', 'takerFee': '0.002', 'unit': 'ZIG'}, {'canDeposit': True, 'canWithdraw': True, 'cryptoassetId': 80658383, 'lastUpdateTimestamp': -62135596800, 'makerFee': '0.002', 'maxWithdrawal': '150000', 'minWithdrawal': '10', 'name': 'PASS', 'takerFee': '0.002', 'unit': 'PASS'}, {'canDeposit': True, 'canWithdraw': True, 'cryptoassetId': 80768583, 'lastUpdateTimestamp': -62135596800, 'makerFee': '0.002', 'maxWithdrawal': '1000000', 'minWithdrawal': '100', 'name': 'PLUS', 'takerFee': '0.002', 'unit': 'PLUS'}, {'canDeposit': True, 'canWithdraw': True, 'cryptoassetId': 85836884, 'lastUpdateTimestamp': -62135596800, 'makerFee': '0.002', 'maxWithdrawal': '6000000', 'minWithdrawal': '30000', 'name': 'USDT', 'takerFee': '0.002', 'unit': 'USDT'}, {'canDeposit': True, 'canWithdraw': True, 'cryptoassetId': 7082696778, 'lastUpdateTimestamp': -62135596800, 'makerFee': '0.002', 'maxWithdrawal': '100000', 'minWithdrawal': '50', 'name': 'FRECN', 'takerFee': '0.002', 'unit': 'FRECN'}, {'canDeposit': True, 'canWithdraw': True, 'cryptoassetId': 867976766582, 'lastUpdateTimestamp': -62135596800, 'makerFee': '0.002', 'maxWithdrawal': '20000000', 'minWithdrawal': '10', 'name': 'Vollar', 'takerFee': '0.002', 'unit': 'VOLLAR'}, {'canDeposit': True, 'canWithdraw': True, 'cryptoassetId': 686765, 'lastUpdateTimestamp': -62135596800, 'makerFee': '0.002', 'maxWithdrawal': '5000000000', 'minWithdrawal': '500000', 'name': 'DCA', 'takerFee': '0.002', 'unit': 'DCA'}, {'canDeposit': True, 'canWithdraw': True, 'cryptoassetId': 68658372, 'lastUpdateTimestamp': -62135596800, 'makerFee': '0.002', 'maxWithdrawal': '3000', 'minWithdrawal': '0.02', 'name': 'DASH', 'takerFee': '0.002', 'unit': 'DASH'}, {'canDeposit': False, 'canWithdraw': False, 'cryptoassetId': 777978, 'lastUpdateTimestamp': -62135596800, 'makerFee': '0.002', 'maxWithdrawal': '20', 'minWithdrawal': '10', 'name': 'MON', 'takerFee': '0.002', 'unit': 'MON'}, {'canDeposit': False, 'canWithdraw': False, 'cryptoassetId': 85836888, 'lastUpdateTimestamp': -62135596800, 'makerFee': '0.002', 'maxWithdrawal': '20', 'minWithdrawal': '10', 'name': 'USDX', 'takerFee': '0.002', 'unit': 'USDX'}, {'canDeposit': False, 'canWithdraw': False, 'cryptoassetId': 836584, 'lastUpdateTimestamp': -62135596800, 'makerFee': '0.002', 'maxWithdrawal': '1000', 'minWithdrawal': '1', 'name': 'SAT', 'takerFee': '0.002', 'unit': 'SAT'}, {'canDeposit': False, 'canWithdraw': False, 'cryptoassetId': 66846767, 'lastUpdateTimestamp': -62135596800, 'makerFee': '0.002', 'maxWithdrawal': '999', 'minWithdrawal': '9', 'name': 'BTCC', 'takerFee': '0.002', 'unit': 'BTCC'}, {'canDeposit': False, 'canWithdraw': False, 'cryptoassetId': 85836869, 'lastUpdateTimestamp': -62135596800, 'makerFee': '0.002', 'maxWithdrawal': '99999999', 'minWithdrawal': '1', 'name': 'USDE', 'takerFee': '0.002', 'unit': 'USDE'}, {'canDeposit': False, 'canWithdraw': False, 'cryptoassetId': 676684, 'lastUpdateTimestamp': -62135596800, 'makerFee': '0.002', 'maxWithdrawal': '1000000', 'minWithdrawal': '100', 'name': 'CBT', 'takerFee': '0.002', 'unit': 'CBT'}], 'message': 'success'}
+test over
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass'>
+    <td>summaryApi.test_ticker.Ticker</td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c3',1)">Detail</a></td>
+</tr>
+
+<tr id='pt3.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_assert</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt3.1')" >
+        pass</a>
+
+    <div id='div_pt3.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt3.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt3.1: {'code': 0, 'data': [{'baseVolume24h': '0', 'highestBid': 0, 'lastPrice': '0', 'lastUpdateTimestamp': 1565072670, 'lowestAsk': '0', 'quoteVolume24h': '0', 'tradesEnabled': True, 'tradingPairs': 'ALX_AIS'}, {'baseVolume24h': '0', 'highestBid': 0, 'lastPrice': '0', 'lastUpdateTimestamp': 1565072670, 'lowestAsk': '0', 'quoteVolume24h': '0', 'tradesEnabled': True, 'tradingPairs': 'BAR_AIS'}, {'baseVolume24h': '0', 'highestBid': 0, 'lastPrice': '0', 'lastUpdateTimestamp': 1565072670, 'lowestAsk': '0', 'quoteVolume24h': '0', 'tradesEnabled': True, 'tradingPairs': 'BTC_ALX'}, {'baseVolume24h': '33.9', 'highestBid': 0, 'lastPrice': '4.32', 'lastUpdateTimestamp': 1565072670, 'lowestAsk': '0', 'quoteVolume24h': '13', 'tradesEnabled': True, 'tradingPairs': 'USDT_ALX'}, {'baseVolume24h': '0', 'highestBid': 0, 'lastPrice': '0', 'lastUpdateTimestamp': 1565072670, 'lowestAsk': '0', 'quoteVolume24h': '0', 'tradesEnabled': True, 'tradingPairs': 'BAR_AST'}, {'baseVolume24h': '0', 'highestBid': 0, 'lastPrice': '0.00000424', 'lastUpdateTimestamp': 1565072670, 'lowestAsk': '0', 'quoteVolume24h': '0', 'tradesEnabled': True, 'tradingPairs': 'BTC_AST'}, {'baseVolume24h': '0', 'highestBid': 0, 'lastPrice': '0', 'lastUpdateTimestamp': 1565072670, 'lowestAsk': '0', 'quoteVolume24h': '0', 'tradesEnabled': True, 'tradingPairs': 'BTC_BAR'}, {'baseVolume24h': '0', 'highestBid': 0, 'lastPrice': '0', 'lastUpdateTimestamp': 1565072670, 'lowestAsk': '0', 'quoteVolume24h': '0', 'tradesEnabled': True, 'tradingPairs': 'AIS_BTC'}, {'baseVolume24h': '0', 'highestBid': 0, 'lastPrice': '0', 'lastUpdateTimestamp': 1565072670, 'lowestAsk': '0', 'quoteVolume24h': '0', 'tradesEnabled': True, 'tradingPairs': 'BAR_BTC'}, {'baseVolume24h': '4', 'highestBid': 0, 'lastPrice': '2', 'lastUpdateTimestamp': 1565072670, 'lowestAsk': '0', 'quoteVolume24h': '3', 'tradesEnabled': True, 'tradingPairs': 'USDT_ECNY'}, {'baseVolume24h': '286.50648048291077318321103538', 'highestBid': 0, 'lastPrice': '0.0003', 'lastUpdateTimestamp': 1565072670, 'lowestAsk': '0', 'quoteVolume24h': '690267.334375325597293827', 'tradesEnabled': True, 'tradingPairs': 'BTC_EOS'}, {'baseVolume24h': '1161512.211637176694456884462', 'highestBid': 0, 'lastPrice': '5.9859', 'lastUpdateTimestamp': 1565072670, 'lowestAsk': '0', 'quoteVolume24h': '195574.389631745549804327', 'tradesEnabled': True, 'tradingPairs': 'USDT_ETC'}, {'baseVolume24h': '0', 'highestBid': 0, 'lastPrice': '0', 'lastUpdateTimestamp': 1565072670, 'lowestAsk': '0', 'quoteVolume24h': '0', 'tradesEnabled': True, 'tradingPairs': 'USDT_IFT'}, {'baseVolume24h': '0', 'highestBid': 0, 'lastPrice': '0', 'lastUpdateTimestamp': 1565072670, 'lowestAsk': '0', 'quoteVolume24h': '0', 'tradesEnabled': True, 'tradingPairs': 'USDX_MON'}, {'baseVolume24h': '15.43665383', 'highestBid': 0, 'lastPrice': '2.0069', 'lastUpdateTimestamp': 1565072670, 'lowestAsk': '0', 'quoteVolume24h': '1003.2107', 'tradesEnabled': True, 'tradingPairs': 'USDT_PASS'}, {'baseVolume24h': '0.243', 'highestBid': 0, 'lastPrice': '0.243', 'lastUpdateTimestamp': 1565072670, 'lowestAsk': '0', 'quoteVolume24h': '1', 'tradesEnabled': True, 'tradingPairs': 'USDT_TITAN'}, {'baseVolume24h': '0', 'highestBid': 0, 'lastPrice': '0', 'lastUpdateTimestamp': 1565072670, 'lowestAsk': '0', 'quoteVolume24h': '0', 'tradesEnabled': True, 'tradingPairs': 'XRP_USDT'}, {'baseVolume24h': '152.03', 'highestBid': 0, 'lastPrice': '53', 'lastUpdateTimestamp': 1565072670, 'lowestAsk': '0', 'quoteVolume24h': '5', 'tradesEnabled': True, 'tradingPairs': 'USDT_VDO'}, {'baseVolume24h': '0', 'highestBid': 0, 'lastPrice': '0', 'lastUpdateTimestamp': 1565072670, 'lowestAsk': '0', 'quoteVolume24h': '0', 'tradesEnabled': True, 'tradingPairs': 'USDT_VOLLAR'}, {'baseVolume24h': '3177317.3924276412977499966922', 'highestBid': 0, 'lastPrice': '0.316', 'lastUpdateTimestamp': 1565072670, 'lowestAsk': '0', 'quoteVolume24h': '10092424.035420582570843673', 'tradesEnabled': True, 'tradingPairs': 'USDT_XRP'}, {'baseVolume24h': '931605.87506354999998621178', 'highestBid': 0, 'lastPrice': '67.52', 'lastUpdateTimestamp': 1565072670, 'lowestAsk': '0', 'quoteVolume24h': '13826.912125473927901249', 'tradesEnabled': True, 'tradingPairs': 'USDT_ZEC'}, {'baseVolume24h': '0', 'highestBid': 0, 'lastPrice': '0', 'lastUpdateTimestamp': 1565072670, 'lowestAsk': '0', 'quoteVolume24h': '0', 'tradesEnabled': True, 'tradingPairs': 'USDX_ZEC'}, {'baseVolume24h': '87.35643135', 'highestBid': 0, 'lastPrice': '0.06', 'lastUpdateTimestamp': 1565072670, 'lowestAsk': '0', 'quoteVolume24h': '8612.3504', 'tradesEnabled': True, 'tradingPairs': 'USDT_ZIG'}, {'baseVolume24h': '411164.66690503999999351891', 'highestBid': 0, 'lastPrice': '11.86', 'lastUpdateTimestamp': 1565072670, 'lowestAsk': '0', 'quoteVolume24h': '35075.002720842396193784', 'tradesEnabled': True, 'tradingPairs': 'USDT_NEO'}, {'baseVolume24h': '12017968.680722953712639929288', 'highestBid': 0, 'lastPrice': '9328.588', 'lastUpdateTimestamp': 1565072670, 'lowestAsk': '0', 'quoteVolume24h': '1161.486160212925308339', 'tradesEnabled': True, 'tradingPairs': 'USDT_BTC'}, {'baseVolume24h': '0', 'highestBid': 0, 'lastPrice': '0', 'lastUpdateTimestamp': 1565072670, 'lowestAsk': '0', 'quoteVolume24h': '0', 'tradesEnabled': True, 'tradingPairs': 'USDT_PVS'}, {'baseVolume24h': '5817726.4607373953422070272075', 'highestBid': 0, 'lastPrice': '3.5743', 'lastUpdateTimestamp': 1565072670, 'lowestAsk': '0', 'quoteVolume24h': '1355644.735525269234718842', 'tradesEnabled': True, 'tradingPairs': 'USDT_EOS'}, {'baseVolume24h': '0', 'highestBid': 0, 'lastPrice': '0', 'lastUpdateTimestamp': 1565072670, 'lowestAsk': '0', 'quoteVolume24h': '0', 'tradesEnabled': True, 'tradingPairs': 'USDT_MOC'}, {'baseVolume24h': '0.094', 'highestBid': 0, 'lastPrice': '0.047', 'lastUpdateTimestamp': 1565072670, 'lowestAsk': '0', 'quoteVolume24h': '2', 'tradesEnabled': True, 'tradingPairs': 'USDT_AIS'}, {'baseVolume24h': '6045795.39615471104338804334', 'highestBid': 0, 'lastPrice': '220.43', 'lastUpdateTimestamp': 1565072670, 'lowestAsk': '0', 'quoteVolume24h': '27864.979220971270234969', 'tradesEnabled': True, 'tradingPairs': 'USDT_ETH'}, {'baseVolume24h': '0', 'highestBid': 0, 'lastPrice': '0', 'lastUpdateTimestamp': 1565072670, 'lowestAsk': '0', 'quoteVolume24h': '0', 'tradesEnabled': True, 'tradingPairs': 'USDT_SPM'}, {'baseVolume24h': '3189964.3447136758290510448972', 'highestBid': 0, 'lastPrice': '0.022042', 'lastUpdateTimestamp': 1565072670, 'lowestAsk': '0', 'quoteVolume24h': '145028097.810197985523885771', 'tradesEnabled': True, 'tradingPairs': 'USDT_TRX'}, {'baseVolume24h': '0', 'highestBid': 0, 'lastPrice': '0', 'lastUpdateTimestamp': 1565072670, 'lowestAsk': '0', 'quoteVolume24h': '0', 'tradesEnabled': True, 'tradingPairs': 'USDT_AST'}, {'baseVolume24h': '4132608.79757547967731783339', 'highestBid': 0, 'lastPrice': '97.97', 'lastUpdateTimestamp': 1565072670, 'lowestAsk': '0', 'quoteVolume24h': '42252.810815195856096752', 'tradesEnabled': True, 'tradingPairs': 'USDT_LTC'}, {'baseVolume24h': '903544.51589278161588068407', 'highestBid': 0, 'lastPrice': '108.11', 'lastUpdateTimestamp': 1565072670, 'lowestAsk': '0', 'quoteVolume24h': '8394.711761488376038402', 'tradesEnabled': True, 'tradingPairs': 'USDT_DASH'}, {'baseVolume24h': '0', 'highestBid': 0, 'lastPrice': '0', 'lastUpdateTimestamp': 1565072670, 'lowestAsk': '0', 'quoteVolume24h': '0', 'tradesEnabled': True, 'tradingPairs': 'USDT_ORG'}, {'baseVolume24h': '0', 'highestBid': 0, 'lastPrice': '0', 'lastUpdateTimestamp': 1565072670, 'lowestAsk': '0', 'quoteVolume24h': '0', 'tradesEnabled': True, 'tradingPairs': 'USDT_CLC'}, {'baseVolume24h': '1103083.769866299999999246092', 'highestBid': 0, 'lastPrice': '1.5439', 'lastUpdateTimestamp': 1565072670, 'lowestAsk': '0', 'quoteVolume24h': '719063.41643610140433533', 'tradesEnabled': True, 'tradingPairs': 'USDT_OMG'}, {'baseVolume24h': '477562.7253075499999982496137', 'highestBid': 0, 'lastPrice': '0.9847', 'lastUpdateTimestamp': 1565072670, 'lowestAsk': '0', 'quoteVolume24h': '488034.312295981214049141', 'tradesEnabled': True, 'tradingPairs': 'USDT_ONT'}, {'baseVolume24h': '0', 'highestBid': 0, 'lastPrice': '0', 'lastUpdateTimestamp': 1565072670, 'lowestAsk': '0', 'quoteVolume24h': '0', 'tradesEnabled': True, 'tradingPairs': 'USDT_PLUS'}, {'baseVolume24h': '0', 'highestBid': 0, 'lastPrice': '0', 'lastUpdateTimestamp': 1565072670, 'lowestAsk': '0', 'quoteVolume24h': '0', 'tradesEnabled': True, 'tradingPairs': 'USDT_TTM'}, {'baseVolume24h': '0', 'highestBid': 0, 'lastPrice': '0', 'lastUpdateTimestamp': 1565072670, 'lowestAsk': '0', 'quoteVolume24h': '0', 'tradesEnabled': True, 'tradingPairs': 'USDT_BITCOIN'}, {'baseVolume24h': '11.8178999', 'highestBid': 0, 'lastPrice': '0.4544', 'lastUpdateTimestamp': 1565072670, 'lowestAsk': '0', 'quoteVolume24h': '26.0022', 'tradesEnabled': True, 'tradingPairs': 'USDT_BAR'}, {'baseVolume24h': '0', 'highestBid': 0, 'lastPrice': '0', 'lastUpdateTimestamp': 1565072670, 'lowestAsk': '0', 'quoteVolume24h': '0', 'tradesEnabled': True, 'tradingPairs': 'USDT_EVO'}], 'message': 'success'}
+test over
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='total_row'>
+    <td>Total</td>
+    <td>20</td>
+    <td>15</td>
+    <td>5</td>
+    <td>0</td>
+    <td>&nbsp;</td>
+</tr>
+</table>
+
+<div id='ending'>&nbsp;</div>
+
+</body>
+</html>
