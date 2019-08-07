@@ -8,8 +8,8 @@ def get_token(yamName="token.yaml"):
     yamlPath=os.path.join(base_path,'token.yaml')
     #open方法打开读取
     with open(yamlPath,'r',encoding='utf-8') as f:
-        a=yaml.load(f)
-        print(a['token'])
+        a=yaml.load(f,Loader=yaml.FullLoader)
+       # print(a['token'])
     return a['token']
 if __name__ =='__main__':
     print(get_token())
