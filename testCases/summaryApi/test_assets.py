@@ -13,7 +13,7 @@ class Assets(unittest.TestCase):
 
     def test_assert(self):
         res = requests.get(self.url).json()
-        # print(res)
+        print(res)
         self.assertIn(res['message'], 'success')
 
 

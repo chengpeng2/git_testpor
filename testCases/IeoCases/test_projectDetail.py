@@ -24,7 +24,7 @@ class ProjectDetail(unittest.TestCase):
     def test_details(self, value):
       """project_id类型为空、特殊字符、汉字、字母、空字符串"""
       res = requests.post(url=self.url, headers=self.headers, params=value).json()
-      #print(res)
+      print(res)
       self.assertIn(value['assert'], res['message'])
 
     @ddt.data(*testData2)
