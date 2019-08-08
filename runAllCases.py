@@ -28,7 +28,6 @@ def login():
 def write_yaml(value):
     # yamlPath yaml文件路径
     yamlPath = os.path.join(base_path, 'common', 'token.yaml')
-    #print(yamlPath)
     # 需要写入的内容
     tk = {'token': value}
     # 写入到yaml文件
@@ -92,7 +91,7 @@ if __name__ == "__main__":
     now = time.strftime('%Y-%m-%d-%H-%M-%S', time.localtime(time.time()))
     fileName = test_report + now + 'result.html'
     fp = open(fileName, 'wb')
-    runner = HTMLTestRunner.HTMLTestRunner(stream=fp, title='自动化测试报告', description='用例执行情况：')
+    runner = HTMLTestRunner.HTMLTestReportCN(stream=fp, title='自动化测试报告', description='用例执行情况：')
     runner.run(discover)
     fp.close()
     new_report = new_file(test_report)

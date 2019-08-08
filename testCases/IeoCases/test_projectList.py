@@ -38,21 +38,21 @@ class ProjectList(unittest.TestCase):
     def test_project1(self, value):
         """请求参数符合接口规范，返回success"""
         rs = requests.post(self.url, self.headers, params=value).json()
-        #print(rs)
+        print(rs)
         self.assertTrue(value['assert'] in rs['message'])
 
     @ddt.data(*testData2)
     def test_project2(self, value):
         """type参数为3或a或特殊字符，返回项目数量页数为0"""
         rs1 = requests.post(self.url, self.headers, params=value).json()
-        #print(rs1)
+        print(rs1)
         self.assertEqual(value['assert'], rs1['data']['total'])
 
     @ddt.data(*testData3)
     def test_project3(self, value):
         """pageNo、pageSize参数为汉字、负数、特殊字符，提示请求参数错误"""
         rs2 = requests.post(self.url, self.headers, params=value).json()
-       # print(rs2)
+        print(rs2)
         self.assertIn(value['assert'], rs2['message'])
 
 if __name__ == "__main__":
