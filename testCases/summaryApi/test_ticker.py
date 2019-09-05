@@ -7,7 +7,7 @@ class Ticker(unittest.TestCase):
     """交易所行情"""
 
     def setUp(self):
-        self.url = ' https://api.ezbtest.top/thirdparty/v1/ticker'
+        self.url = 'https://api.ezbtest.top/thirdparty/v1/ticker'
 
     def tearDown(self):
         print('test over')

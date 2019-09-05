@@ -13,7 +13,7 @@ class MarketPair(unittest.TestCase):
 
     def test_assert(self):
         """交易所盘口数据"""
-        res = requests.get(self.url).json()
+        res = requests.get(self.url,verify=False).json()
         print(res)
         self.assertIn(res['message'], 'success')
 

@@ -11,6 +11,9 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from email.header import Header
 from ruamel import yaml
+import urllib3
+
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 base_path = os.path.dirname(os.path.relpath(__file__))
 
@@ -18,8 +21,8 @@ base_path = os.path.dirname(os.path.relpath(__file__))
 def login():
     # 登录获取token
     url = "https://api.ezbtest.top/uc/login"
-    data = {"username": '1656481004@qq.com', "password": 'zxz123abc'}
-    res = requests.post(url=url, data=data)
+    data = {"username": '1656481004@qq.com', "password": 'Zxz123abc'}
+    res = requests.post(url=url, data=data, verify=False)
     dc = res.json()
     token = dc['data']['token']
     return token
@@ -55,7 +58,7 @@ def send_email(newfile):
     # 发送邮箱
     sender = 'qunjie_xu@proway.tech'
     # 多个接受邮箱,单个收件人的话，直接是receiver=’xxx@163.com'
-    receiver = ['qunjie_xu@proway.tech','1991789649@qq.com']
+    receiver = ['qunjie_xu@proway.tech', '1991789649@qq.com']
     # 发送邮件主题
     subject = '自动化测试报告'
     # 发送附件
@@ -68,25 +71,27 @@ def send_email(newfile):
     # msg['To'] = 'qunjie.xu@chyeth.com'
     msg['Subject'] = Header(subject, 'utf-8')
     # 连接发送邮件
-    smtpserver="smtp.mxhichina.com"
+    smtpserver = "smtp.mxhichina.com"
     smtp = smtplib.SMTP_SSL(smtpserver)
     smtp.connect(smtpserver, 465)
-    user='qunjie_xu@proway.tech'
-    password='zxz!123!abc!'
+    user = 'qunjie_xu@proway.tech'
+    password = 'zxz!123!abc!'
     smtp.login(user, password)
     smtp.sendmail(sender, receiver, msg.as_string())
     smtp.quit()
-sys.path.append(os.path.dirname(os.path.abspath(__file__)) + r'\..')  # 返回脚本的路径
-logging.basicConfig(level=logging.DEBUG,
-                    format='%(asctime)s %(filename)s[line:%(lineno)d] %(levelname)s %(message)s',
-                    datefmt='%a, %d %b %Y %H:%M:%S',
-                    filename='./log/logs.txt',
-                    filemode='w')
+
+#
+# sys.path.append(os.path.dirname(os.path.abspath(__file__)) + r'\..')  # 返回脚本的路径
+# logging.basicConfig(level=logging.DEBUG,
+#                     format='%(asctime)s %(filename)s[line:%(lineno)d] %(levelname)s %(message)s',
+#                     datefmt='%a, %d %b %Y %H:%M:%S',
+#                     filename='./log/logs.txt',
+#                     filemode='w')
 if __name__ == "__main__":
     token = login()  # 登录获取token
     write_yaml(token)  # 写入yaml文件
-    test_dir = 'D:\\puwei\\InterfaceTest\\testCases\\'
-    test_report = 'D:\\puwei\\InterfaceTest\\testReports\\'
+    test_dir = os.path.join(base_path, 'testCases')
+    test_report = os.path.join(base_path, 'testReports' + '\\')
     discover = unittest.defaultTestLoader.discover(test_dir, pattern='test*.py')
     now = time.strftime('%Y-%m-%d-%H-%M-%S', time.localtime(time.time()))
     fileName = test_report + now + 'result.html'

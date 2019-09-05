@@ -12,7 +12,7 @@ class MarketPair(unittest.TestCase):
         print('test over')
 
     def test_assert(self):
-        res = requests.get(self.url).json()
+        res = requests.get(self.url,verify=False).json()
         print(res)
         self.assertIn(res['message'], 'success')
 
