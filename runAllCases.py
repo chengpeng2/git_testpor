@@ -25,6 +25,7 @@ def login():
     res = requests.post(url=url, data=data, verify=False)
     dc = res.json()
     token = dc['data']['token']
+    #print(token)
     return token
 
 
@@ -36,6 +37,26 @@ def write_yaml(value):
     # 写入到yaml文件
     with open(yamlPath, 'w', encoding='utf-8') as f:
         yaml.dump(tk, f, Dumper=yaml.RoundTripDumper)
+
+def add(token):
+    # 下单
+    url = "https://api.ezbtest.top/exchange/order/add"
+    headers = {"x-auth-token": token}
+    testData = {'direction': 'BUY', 'symbol': 'BTC/USDT', 'price': 1, 'amount': 1, 'type': 'LIMIT_PRICE'}
+    res = requests.post(url=url, headers=headers, data=testData).json()
+    orderId = res['data']['orderId']
+    #print(orderId)
+    return orderId
+
+
+def write_yaml2(value2):
+    # yamlPath yaml文件路径
+    yamlPath = os.path.join(base_path, 'common', 'orderId.yaml')
+    # 需要写入的内容
+    orId = {'orderId': value2}
+    # 写入到yaml文件
+    with open(yamlPath, 'w', encoding='utf-8') as f:
+        yaml.dump(orId, f, Dumper=yaml.RoundTripDumper)
 
 
 # 查找最新生成的测试报告html
@@ -81,15 +102,17 @@ def send_email(newfile):
     smtp.quit()
 
 #
-# sys.path.append(os.path.dirname(os.path.abspath(__file__)) + r'\..')  # 返回脚本的路径
-# logging.basicConfig(level=logging.DEBUG,
-#                     format='%(asctime)s %(filename)s[line:%(lineno)d] %(levelname)s %(message)s',
-#                     datefmt='%a, %d %b %Y %H:%M:%S',
-#                     filename='./log/logs.txt',
-#                     filemode='w')
+sys.path.append(os.path.dirname(os.path.abspath(__file__)) + r'\..')  # 返回脚本的路径
+logging.basicConfig(level=logging.DEBUG,
+                    format='%(asctime)s %(filename)s[line:%(lineno)d] %(levelname)s %(message)s',
+                    datefmt='%a, %d %b %Y %H:%M:%S',
+                    filename='./log/logs.txt',
+                    filemode='w')
 if __name__ == "__main__":
     token = login()  # 登录获取token
     write_yaml(token)  # 写入yaml文件
+    orderId = add(token) # 下单获取orderId
+    write_yaml2(orderId)  #写入yaml2文件
     test_dir = os.path.join(base_path, 'testCases')
     test_report = os.path.join(base_path, 'testReports' + '\\')
     discover = unittest.defaultTestLoader.discover(test_dir, pattern='test*.py')
