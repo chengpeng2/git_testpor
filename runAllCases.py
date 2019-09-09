@@ -42,7 +42,7 @@ def add(token):
     # 下单
     url = "https://api.ezbtest.top/exchange/order/add"
     headers = {"x-auth-token": token}
-    testData = {'direction': 'BUY', 'symbol': 'BTC/USDT', 'price': 1, 'amount': 1, 'type': 'LIMIT_PRICE'}
+    testData = {'direction': 'BUY', 'symbol': 'EOS/USDT', 'price': 0.1, 'amount': 1, 'type': 'LIMIT_PRICE'}
     res = requests.post(url=url, headers=headers, data=testData).json()
     orderId = res['data']['orderId']
     #print(orderId)
@@ -58,6 +58,24 @@ def write_yaml2(value2):
     with open(yamlPath, 'w', encoding='utf-8') as f:
         yaml.dump(orId, f, Dumper=yaml.RoundTripDumper)
 
+def add2(token):
+    # 下单
+    url = "https://api.ezbtest.top/exchange/order/add"
+    headers = {"x-auth-token": token}
+    testData = {'direction': 'BUY', 'symbol': 'BTC/USDT', 'price': 1, 'amount':1, 'type': 'LIMIT_PRICE'}
+    res = requests.post(url=url, headers=headers, data=testData).json()
+    orderId = res['data']['orderId']
+    # print(orderId)
+    return orderId
+
+def write_yaml3(value3):
+    # yamlPath yaml文件路径
+    yamlPath = os.path.join(base_path, 'common', 'orderId2.yaml')
+    # 需要写入的内容
+    orId = {'orderId': value3}
+    # 写入到yaml文件
+    with open(yamlPath, 'w', encoding='utf-8') as f:
+        yaml.dump(orId, f, Dumper=yaml.RoundTripDumper)
 
 # 查找最新生成的测试报告html
 def new_file(test_dir):
@@ -111,8 +129,10 @@ logging.basicConfig(level=logging.DEBUG,
 if __name__ == "__main__":
     token = login()  # 登录获取token
     write_yaml(token)  # 写入yaml文件
-    orderId = add(token) # 下单获取orderId
-    write_yaml2(orderId)  #写入yaml2文件
+    orderId = add(token) # 下单获取未成交orderId
+    write_yaml2(orderId)  # 写入yaml2文件
+    orderId2=add2(token)  #下单获取已成交orderId
+    write_yaml3(orderId2)  # 写入yaml3文件
     test_dir = os.path.join(base_path, 'testCases')
     test_report = os.path.join(base_path, 'testReports' + '\\')
     discover = unittest.defaultTestLoader.discover(test_dir, pattern='test*.py')
