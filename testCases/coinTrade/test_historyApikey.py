@@ -7,21 +7,20 @@ testData1 = [{'assert': 10},
              {'symbol': 'BTC/USDT', 'assert': 10},
              {'symbol': 'BTC/USDT', 'pageNo': 1, 'assert': 10},
              {'symbol': 'BTC/USDT', 'pageSize': 20, 'assert': 10},
-             {'symbol': 'BTC/USDT', 'pageNo': 1, 'pageSize': 20, 'assert': 20},
+             {'symbol': 'BTC/USDT', 'pageNo':1,'pageSize': 20, 'assert': 20},
              {'pageNo': 1, 'pageSize': 20, 'assert': 20}]
 testData2 = [{'pageNo': 'a', 'pageSize': 'b', 'assert': "Invalid parameter"},
              {'pageNo': 1, 'pageSize': 'b', 'assert': "Invalid parameter"},
              {'pageNo': 'q', 'pageSize': 1, 'assert': "Invalid parameter"}]
 
 
-
 @ddt.ddt
-class History(unittest.TestCase):
+class HistoryApikey(unittest.TestCase):
     """历史委托"""
 
     def setUp(self):
-        self.headers = {"x-auth-token": get_token()}
-        self.url = "https://api.ezbtest.top/exchange/order/history"
+        self.headers = {"x-auth-token":get_token()}
+        self.url = "https://api.ezbtest.top/exchange/order/history?apikey=a1f960b9-6f75-429c-adf6-faf52a11f4e1-829157c9fa8e14a398fa5e47520d39a9"
 
     def tearDown(self):
         print('test over')

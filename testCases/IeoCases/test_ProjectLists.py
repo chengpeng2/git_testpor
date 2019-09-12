@@ -26,7 +26,7 @@ testData4 = [{'pageNo': '-9', 'pageSize': 6, 'assert': []}]
 
 @ddt.ddt
 class ProjectList(unittest.TestCase):
-    """项目列表"""
+    """申购成功项目列表"""
 
     def setUp(self):
         self.headers = {"x-auth-token":get_token()}

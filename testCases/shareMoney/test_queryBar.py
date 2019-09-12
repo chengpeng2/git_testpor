@@ -10,7 +10,7 @@ data2=[{"pageNo":"aa","assert":"错误的参数"},
        {"pageSize": "汉字", "assert": "错误的参数"}]
 @ddt.ddt
 class QueryBars(unittest.TestCase):
-    """用户BAR锁仓"""
+    """分页查询用户用户锁仓记录（不包含已解锁）"""
 
     def setUp(self):
         self.headers = {"x-auth-token": get_token(),

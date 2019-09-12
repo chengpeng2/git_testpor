@@ -5,7 +5,7 @@ from common.readToken import get_token
 
 
 class SumRewards(unittest.TestCase):
-    """用户BAR锁仓"""
+    """查询用户累计分红折合usdt数量"""
 
     def setUp(self):
         self.headers = {"x-auth-token":get_token(),
