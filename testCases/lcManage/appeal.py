@@ -3,7 +3,7 @@ import unittest
 import ddt
 import requests
 
-from testCases.back.config import get_cookie
+from back.config import get_cookie
 
 testData1 = [{'assert':'SUCCESS'},
              {'advertiseType':0,'assert':'SUCCESS'},

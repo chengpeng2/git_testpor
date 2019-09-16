@@ -1,6 +1,8 @@
-import requests
 import unittest
+
 import ddt
+import requests
+
 from common.readToken import get_token
 
 testData1 = [{'project_id': '', 'assert': 'request parameter error.'}, {'project_id': 'aa', 'assert': '失败'},

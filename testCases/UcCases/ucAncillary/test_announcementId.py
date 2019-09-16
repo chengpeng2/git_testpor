@@ -1,8 +1,6 @@
 import unittest
-import requests
-import ddt
-from common.readToken import get_token
 
+import requests
 
 
 class anId(unittest.TestCase):
@@ -10,7 +8,7 @@ class anId(unittest.TestCase):
 
     def setUp(self):
         self.headers = {"Accept-Language":"zh-CN"}
-        self.url = "https://api.ezbtest.top/uc/announcement/121"
+        self.url = "https://api.ezbtest.top/ancillary/announcement/121"
 
     def tearDown(self):
         print('test over')

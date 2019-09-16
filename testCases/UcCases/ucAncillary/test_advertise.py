@@ -1,7 +1,7 @@
 import unittest
-import requests
+
 import ddt
-from common.readToken import get_token
+import requests
 
 data1 = [{'assert': '成功'}, {'sysAdvertiseLocation': '0', 'language': 'zh-CN', 'assert': '成功'},
          {'sysAdvertiseLocation': '1', 'language': 'zh-CN', 'assert': '成功'},
@@ -13,7 +13,7 @@ class adver(unittest.TestCase):
     """系统广告"""
 
     def setUp(self):
-        self.url = "https://api.ezbtest.top/uc/ancillary/system/advertise"
+        self.url = "https://api.ezbtest.top/ancillary/system/advertise"
 
     def tearDown(self):
         print('test over')

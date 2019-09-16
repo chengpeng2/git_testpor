@@ -1,6 +1,8 @@
 import unittest
-import requests
+
 import ddt
+import requests
+
 from common.readToken import get_token
 
 testData1 = [{'ticket_id': 33, 'password': '12345678', 'assert': 500}]

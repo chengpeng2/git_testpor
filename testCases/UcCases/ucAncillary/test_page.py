@@ -14,7 +14,7 @@ class page(unittest.TestCase):
 
     def setUp(self):
         self.headers = {"Accept-Language":"zh-CN"}
-        self.url = "https://api.ezbtest.top/uc/announcement/page"
+        self.url = "https://api.ezbtest.top/ancillary/announcement/page"
 
     def tearDown(self):
         print('test over')

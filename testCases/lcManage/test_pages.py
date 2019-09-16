@@ -3,7 +3,7 @@ import unittest
 import ddt
 import requests
 
-from testCases.back.config import get_cookie
+from common.readCookie import get_cookie
 
 testData1 = [{'assert':'SUCCESS'},
              {'account':'2585683','assert':'SUCCESS'},

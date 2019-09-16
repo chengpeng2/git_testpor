@@ -1,14 +1,13 @@
 import unittest
+
 import requests
-import ddt
-from common.readToken import get_token
 
 
 class infos(unittest.TestCase):
     """未使用的接口(站点信息)"""
 
     def setUp(self):
-        self.url = "https://api.ezbtest.top/uc/ancillary/website/info"
+        self.url = "https://api.ezbtest.top/ancillary/website/info"
 
     def tearDown(self):
         print('test over')

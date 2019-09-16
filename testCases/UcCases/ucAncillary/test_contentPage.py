@@ -1,7 +1,7 @@
 import unittest
-import requests
+
 import ddt
-from common.readToken import get_token
+import requests
 
 data1 = [{'assert': '成功'}, {'pageNo': 0, 'assert': 'success'},
          {'pageNo': 1, 'assert': 'success'},
@@ -15,7 +15,7 @@ class conPage(unittest.TestCase):
 
     def setUp(self):
         self.headers = {"Accept-Language":"zh-CN"}
-        self.url = "https://api.ezbtest.top/uc/announcement/page"
+        self.url = "https://api.ezbtest.top/ancillary/coin-content/page"
 
     def tearDown(self):
         print('test over')

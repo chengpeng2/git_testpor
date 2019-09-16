@@ -1,6 +1,8 @@
 import unittest
-import requests
+
 import ddt
+import requests
+
 from common.readToken import get_token
 
 testData1 = [{'assert': 10},

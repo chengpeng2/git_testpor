@@ -1,7 +1,7 @@
 import unittest
-import requests
+
 import ddt
-from common.readToken import get_token
+import requests
 
 data1 = [{'assert': '成功'}, {'sysHelpClassification': '0', 'assert': '成功'},
          {'sysHelpClassification': '1', 'assert': '成功'},
@@ -14,7 +14,7 @@ class helpId(unittest.TestCase):
 
     def setUp(self):
         self.headers = {"Accept-Language":"zh_CN"}
-        self.url = "https://api.ezbtest.top/uc/ancillary/system/help/6"
+        self.url = "https://api.ezbtest.top/ancillary/system/help/6"
 
     def tearDown(self):
         print('test over')

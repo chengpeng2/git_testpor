@@ -1,7 +1,10 @@
 import unittest
+
 import requests
-from common.readToken import get_token
+
 from common.readOrderId import get_orderId
+from common.readToken import get_token
+
 
 class Adds(unittest.TestCase):
     """取消下单"""

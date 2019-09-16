@@ -1,7 +1,9 @@
+import base64
+import unittest
+
 import requests
-from urllib3 import encode_multipart_formdata
+
 from common.readToken import get_token
-import unittest, base64
 
 
 class Os(unittest.TestCase):
@@ -18,7 +20,7 @@ class Os(unittest.TestCase):
             print(base64_data)
             data = {'base64Data': 'data:image/png;base64,' + base64.b64encode(f.read()).decode()}
             header = {'client': 'web', 'Content-Type': "application/x-www-form-urlencoded",
-                      "x-auth-token": get_token}
+                      "x-auth-token": get_token()}
             url = "https://api.ezbtest.top/uc/upload/oss/base64"
             res = requests.post(url, headers=header, data=data).json()
             print(res)
@@ -29,7 +31,7 @@ class Os(unittest.TestCase):
             print(base64_data)
             data = {'base64Data': 'data:image/png;base64,' + base64.b64encode(f.read()).decode()}
             header = {'client': 'web', 'Content-Type': "application/x-www-form-urlencoded",
-                      "x-auth-token": get_token}
+                      "x-auth-token": get_token()}
             url = "https://api.ezbtest.top/ancillary/upload/oss/base64"
             res = requests.post(url, headers=header, data=data).json()
             print(res)

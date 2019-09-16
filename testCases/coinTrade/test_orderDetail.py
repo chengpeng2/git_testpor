@@ -1,7 +1,10 @@
 import unittest
+
 import requests
-from common.readToken import get_token
+
 from common.readOrderId2 import get_orderId2
+from common.readToken import get_token
+
 
 class Adds(unittest.TestCase):
     """订单成交详情"""

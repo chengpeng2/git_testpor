@@ -1,7 +1,7 @@
 import unittest
-import requests
+
 import ddt
-from common.readToken import get_token
+import requests
 
 data1 = [{'assert': 'coin content not exist'}, {'unit': 'BAR','assert': 'success'},
          {'unit': 'BAR','assert': 'success'}]
@@ -11,7 +11,7 @@ class Details(unittest.TestCase):
 
     def setUp(self):
         self.headers={'language': 'zh-CN',}
-        self.url = "https://api.ezbtest.top/uc/coin-content/detail"
+        self.url = "https://api.ezbtest.top/ancillary/coin-content/detail"
 
     def tearDown(self):
         print('test over')

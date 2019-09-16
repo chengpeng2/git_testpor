@@ -135,7 +135,7 @@ if __name__ == "__main__":
     write_yaml3(orderId2)  # 写入yaml3文件
     test_dir = os.path.join(base_path, 'testCases')
     test_report = os.path.join(base_path, 'testReports' + '\\')
-    discover = unittest.defaultTestLoader.discover(test_dir, pattern='test*.py')
+    discover = unittest.defaultTestLoader.discover(test_dir, pattern='test*.py',top_level_dir='D:\puwei\InterfaceTest')
     now = time.strftime('%Y-%m-%d-%H-%M-%S', time.localtime(time.time()))
     fileName = test_report + now + 'result.html'
     fp = open(fileName, 'wb')

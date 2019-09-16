@@ -1,7 +1,10 @@
 import unittest
-import requests
+
 import ddt
+import requests
+
 from common.readToken import get_token
+
 data1=[{"assert":"success"},{"pageNo":1,"assert":"success"},{"pageSize":11,"assert":"success"},
        {"pageNo": "", "pageSize": "", "assert": "success"},{"pageNo":1,"pageSize":11,"assert":"success"}]
 data2=[{"pageNo":"aa","assert":"错误的参数"},

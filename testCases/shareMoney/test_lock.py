@@ -1,8 +1,11 @@
-import unittest
-import requests
-import ddt
 import json
+import unittest
+
+import ddt
+import requests
+
 from common.readToken import get_token
+
 data1=[{"month":3,"amount":"1","assert":"Operation successful"},{"amount": "1", "assert": "Operation successful"},{"month":4,"amount":"1","assert":"Operation successful"}]
 data2=[{"month":"","amount": "1", "assert": "Parameter error"},{"month":"汉字","amount":"","assert":"Parameter error"},{"month":'aa',"amount":"1","assert":"Parameter error"},
        {"month":"","amount":"","assert":"Parameter error"},{"month":"3","amount":"","assert":"Parameter error"}]

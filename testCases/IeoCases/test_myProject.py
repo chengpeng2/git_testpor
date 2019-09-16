@@ -1,7 +1,9 @@
 import unittest
-import requests
-from common.readToken import get_token
+
 import ddt
+import requests
+
+from common.readToken import get_token
 
 testData1 = [{'project_id': '', 'pageNo': '', 'pageSize': '', 'assert': '成功'},
             {'project_id': 95, 'pageNo': 1, 'pageSzie': '2', 'assert': '成功'},
